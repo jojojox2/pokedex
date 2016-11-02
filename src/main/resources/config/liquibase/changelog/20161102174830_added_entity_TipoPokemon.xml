@@ -29,4 +29,9 @@
         </createTable>
         
     </changeSet>
+    <changeSet id="20161102233631-1" author="idiazcar" >
+        <loadData
+            file="config/liquibase/tipo_pokemon.csv"
+            tableName="tipo_pokemon"/>
+</changeSet>
 </databaseChangeLog>
