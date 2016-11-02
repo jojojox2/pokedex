@@ -39,7 +39,7 @@ import pokedex.web.rest.util.PaginationUtil;
 public class PokemonResource {
 
     private final Logger log = LoggerFactory.getLogger(PokemonResource.class);
-    private final int MAX_FAVORITES = 2;
+    private final int MAX_FAVORITES = 10;
         
     @Inject
     private PokemonRepository pokemonRepository;
@@ -58,7 +58,7 @@ public class PokemonResource {
         if (pokemon.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pokemon", "idexists", "Un nuevo Pokémon no puede ya tener un ID")).body(null);
         }
-        if (pokemon.isFavorito() && isMaxFavorites(pokemon)) {
+        if (pokemon.isFavorito() != null && pokemon.isFavorito() && isMaxFavorites(pokemon)) {
             return getMaxFavoritesResponse();        	
         }
         Pokemon result = pokemonRepository.save(pokemon);
@@ -83,7 +83,7 @@ public class PokemonResource {
         if (pokemon.getId() == null) {
             return createPokemon(pokemon);
         }
-        if (pokemon.isFavorito() && isMaxFavorites(pokemon)) {
+        if (pokemon.isFavorito() != null && pokemon.isFavorito() && isMaxFavorites(pokemon)) {
             return getMaxFavoritesResponse();        	
         }
         Pokemon result = pokemonRepository.save(pokemon);

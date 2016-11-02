@@ -52,8 +52,8 @@
                     </td>
                     <td>{{pokemon.descripcion}}</td>
                     <td>
-                        <a ui-sref="tipo-pokemon-detail({id:pokemon.tipo1.id})">{{pokemon.tipo1.tipo}}</a>
-                        <span ng-if="pokemon.tipo2.tipo"> / <a ui-sref="tipo-pokemon-detail({id:pokemon.tipo2.id})">{{pokemon.tipo2.tipo}}</a></span>
+                        {{pokemon.tipo1.tipo}}
+                        <span ng-if="pokemon.tipo2.tipo"> / {{pokemon.tipo2.tipo}}</span>
                     </td>
                     <td>
                         <a ui-sref="pokemon-detail({id:pokemon.evolucion.id})">{{pokemon.evolucion.nombre}}</a>
