@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span>{{vm.pokemon.id}} - {{vm.pokemon.nombre}}</span>
+    	<a ng-click="vm.updateFavorito(false)"><span class="glyphicon glyphicon-star" ng-if="vm.pokemon.favorito"></span></a>
+    	<a ng-click="vm.updateFavorito(true)"><span class="glyphicon glyphicon-star-empty" ng-if="!vm.pokemon.favorito"></span></a>
+    </h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.pokemon.nombre}}</span>
+        </dd>
+        <dt><span>Descripci&oacuten</span></dt>
+        <dd>
+            <span>{{vm.pokemon.descripcion}}</span>
+        </dd>
+        <dt><span>Tipo</span></dt>
+        <dd>
+            {{vm.pokemon.tipo1.tipo}}
+            <span ng-if="vm.pokemon.tipo2.tipo"> / {{vm.pokemon.tipo2.tipo}}</span>
+        </dd>
+        <dt><span>Evoluci&oacute;n</span></dt>
+        <dd>
+            <a ui-sref="pokemon-detail({id:vm.pokemon.evolucion.id})">{{vm.pokemon.evolucion.nombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}({{vm.previousStateParams}})"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Volver</span>
+    </button>
+
+    <button type="button" ui-sref="pokemon-detail.edit({id:vm.pokemon.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Editar</span>
+    </button>
+</div>

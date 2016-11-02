@@ -1,0 +1,25 @@
+<div ng-cloak>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Bienvenido a la Pok&eacute;dex!</h1>
+
+            <div ng-switch="vm.isAuthenticated()">
+                <div class="alert alert-success" ng-switch-when="true">
+                    Has iniciado sesi&oacuten como "{{vm.account.login}}".
+                </div>
+
+                <div class="alert alert-warning" ng-switch-when="false">
+                    Para utilizar la Pok&eacute;dex debes <a class="alert-link" href="" ng-click="vm.login()">iniciar sesi&oacuten</a>. Puedes utilizar las cuentas por defecto:<br/>- Administrador (usuario="admin", contrase&ntilde;a="admin") <br/>- Usuario (usuario="user", contrase&ntilde;a="user").
+                </div>
+
+                <!-- <div class="alert alert-warning" ng-switch-when="false">
+                    &iquest;No tienes cuenta? <a class="alert-link" ui-sref="register">Registrar nueva cuenta</a>
+                </div> -->
+                
+		        <div ng-switch-when="true">
+		        	<p>Consulta la <strong><a ui-sref="pokemon">Pok&eacute;dex</a></strong> o bien los <strong><a ui-sref="tipo-pokemon">tipos de Pok&eacute;mon</a></strong></p>        	
+		        </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div>
+    <h2>Pok&eacute;dex</h2>
+    <jhi-alert-error></jhi-alert-error>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="pokemon.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Crear nuevo Pok&eacute;mon
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+		        <div class="form-group">
+		            <label for="filtroNombre">Buscar: </label>
+		            <input type="text" class="form-control" id="filtroNombre" name="filtroNombre"
+		                    ng-model="vm.filtro.nombre" ng-change="vm.filtrar()" />
+		            <label for="filtroFavorito"> S&oacute;lo favoritos: </label>
+            		<input type="checkbox" class="" name="filtroFavorito" id="filtroFavorito"
+                    		ng-model="vm.filtro.favorito" ng-change="vm.filtrar()" />
+		        </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th><span>ID</span></th>
+                    <th><span>Nombre</span></th>
+                    <th><span>Favorito</span></th>
+                    <th width="35%"><span>Descripci&oacute;n</span></th>
+                    <th><span>Tipo</span></th>
+                    <th><span>Evoluci&oacute;n</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pokemon in vm.pokemons | filter : {nombre: vm.filtro.nombre} | filter : {favorito: vm.filtro.favorito} : vm.filtradorFavoritos track by pokemon.id">
+                    <td><a ui-sref="pokemon-detail({id:pokemon.id})">{{pokemon.id}}</a></td>
+                    <td><a ui-sref="pokemon-detail({id:pokemon.id})">{{pokemon.nombre}}</a></td>
+                    <td>
+				    	<a ng-click="vm.updateFavorito(pokemon, false)"><span class="glyphicon glyphicon-star" ng-if="pokemon.favorito"></span></a>
+				    	<a ng-click="vm.updateFavorito(pokemon, true)"><span class="glyphicon glyphicon-star-empty" ng-if="!pokemon.favorito"></span></a>
+                    </td>
+                    <td>{{pokemon.descripcion}}</td>
+                    <td>
+                        <a ui-sref="tipo-pokemon-detail({id:pokemon.tipo1.id})">{{pokemon.tipo1.tipo}}</a>
+                        <span ng-if="pokemon.tipo2.tipo"> / <a ui-sref="tipo-pokemon-detail({id:pokemon.tipo2.id})">{{pokemon.tipo2.tipo}}</a></span>
+                    </td>
+                    <td>
+                        <a ui-sref="pokemon-detail({id:pokemon.evolucion.id})">{{pokemon.evolucion.nombre}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="pokemon-detail({id:pokemon.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pokemon.edit({id:pokemon.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pokemon.delete({id:pokemon.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

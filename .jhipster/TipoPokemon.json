@@ -1,0 +1,18 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20161102174830",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "tipo_pokemon",
+    "pagination": "pager"
+}

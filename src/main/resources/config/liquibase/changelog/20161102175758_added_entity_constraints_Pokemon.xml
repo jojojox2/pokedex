@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Pokemon.
+    -->
+    <changeSet id="20161102175758-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tipo1_id"
+                                 baseTableName="pokemon"
+                                 constraintName="fk_pokemon_tipo1_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_pokemon"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo2_id"
+                                 baseTableName="pokemon"
+                                 constraintName="fk_pokemon_tipo2_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_pokemon"/>
+
+        <addForeignKeyConstraint baseColumnNames="evolucion_id"
+                                 baseTableName="pokemon"
+                                 constraintName="fk_pokemon_evolucion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pokemon"/>
+
+    </changeSet>
+</databaseChangeLog>

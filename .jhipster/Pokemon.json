@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "tipo1",
+            "otherEntityName": "tipoPokemon",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "tipo"
+        },
+        {
+            "relationshipName": "tipo2",
+            "otherEntityName": "tipoPokemon",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "tipo"
+        },
+        {
+            "relationshipName": "evolucion",
+            "otherEntityName": "pokemon",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "4",
+            "fieldValidateRulesMaxlength": "24"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "30"
+        },
+        {
+            "fieldName": "favorito",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20161102175758",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "pokemon",
+    "pagination": "pager"
+}

@@ -1,0 +1,95 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPokemonLabel">
+	        <span ng-if="vm.pokemon.id === null">Crear Pok&eacute;mon</span>
+	        <span ng-if="vm.pokemon.id !== null">Editar Pok&eacute;mon</span>
+		</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pokemon.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pokemon.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                    ng-model="vm.pokemon.nombre"
+                    required ng-minlength="4" ng-maxlength="24" />
+            <div ng-show="editForm.nombre.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nombre.$error.required">
+                    Campo obligatorio.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.nombre.$error.minlength" translate-value-min="4">
+                    Este campo debe tener al menos 4 caracteres.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.nombre.$error.maxlength">
+                    Este campo no puede tener mas de 24 caracteres.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_descripcion">Descripci&oacute;n</label>
+            <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                    ng-model="vm.pokemon.descripcion"
+                    required ng-minlength="30" />
+            <div ng-show="editForm.descripcion.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.descripcion.$error.required">
+                    Campo obligatorio.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.descripcion.$error.minlength" translate-value-min="30">
+                    Este campo debe tener al menos 30 caracteres.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_favorito">Favorito</label>
+            <input type="checkbox" class="form-control" name="favorito" id="field_favorito"
+                    ng-model="vm.pokemon.favorito"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_tipo1">Tipo 1</label>
+            <select class="form-control" id="field_tipo1" name="tipo1" ng-model="vm.pokemon.tipo1" ng-options="tipoPokemon as tipoPokemon.tipo for tipoPokemon in vm.tipopokemons track by tipoPokemon.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.tipo1.$invalid">
+            <p class="help-block"
+                ng-show="editForm.tipo1.$error.required">
+                Campo obligatorio.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_tipo2">Tipo 2</label>
+            <select class="form-control" id="field_tipo2" name="tipo2" ng-model="vm.pokemon.tipo2" ng-options="tipoPokemon as tipoPokemon.tipo for tipoPokemon in vm.tipopokemons track by tipoPokemon.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_evolucion">Evoluci&oacute;n</label>
+            <select class="form-control" id="field_evolucion" name="evolucion" ng-model="vm.pokemon.evolucion" ng-options="pokemon as pokemon.nombre for pokemon in vm.pokemons | filter : {id: '!'+vm.pokemon.id} track by pokemon.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
+        </button>
+    </div>
+</form>
