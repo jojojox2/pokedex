@@ -100,7 +100,7 @@ public class PokemonResource {
     	List<Pokemon> pokemons = pokemonRepository.findAll();
     	int count = 1;
     	for (Pokemon pokemon : pokemons) {
-    		if (newPokemon.getId() != pokemon.getId() && pokemon.isFavorito()) {
+    		if (newPokemon.getId() != pokemon.getId() && pokemon.isFavorito() != null && pokemon.isFavorito()) {
     			count++;
     			if (count > MAX_FAVORITES) {
     				return true;
